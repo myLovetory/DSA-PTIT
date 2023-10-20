@@ -1,0 +1,52 @@
+using System;
+
+namespace SimpleGame
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Welcome to the Simple Game!");
+            Console.WriteLine("Guess a number between 1 and 10:");
+
+            Random random = new Random();
+            int randomNumber = random.Next(1, 11);
+
+            int guess = 0;
+            int numberOfGuesses = 0;
+
+            while (guess != randomNumber)
+            {
+                string input = Console.ReadLine();
+                if (!int.TryParse(input, out guess))
+                {
+                    Console.WriteLine("Invalid input. Please enter a number between 1 and 10:");
+                    continue;
+                }
+
+                if (guess < 1 || guess > 10)
+                {
+                    Console.WriteLine("Invalid input. Please enter a number between 1 and 10:");
+                    continue;
+                }
+
+                numberOfGuesses++;
+
+                if (guess < randomNumber)
+                {
+                    Console.WriteLine("Too low. Guess again:");
+                }
+                else if (guess > randomNumber)
+                {
+                    Console.WriteLine("Too high. Guess again:");
+                }
+                else
+                {
+                    Console.WriteLine("Congratulations! You guessed the number in " + numberOfGuesses + " guesses.");
+                }
+            }
+
+            Console.WriteLine("Press any key to exit.");
+        }
+    }
+}
